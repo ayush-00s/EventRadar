@@ -4,13 +4,17 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
-const LogIn = ({ onClose }) => {
+const LogIn = ({ onClose,onSignUpClick }) => {
     
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const handleSignUp = () => {
+        onClose();
+        onSignUpClick();
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -29,12 +33,14 @@ const LogIn = ({ onClose }) => {
                 password: password
             };
 
-            const res = await axios.post("http://localhost:5001/user/signin", userInfo);
+            const res = await axios.post("http://localhost:5001/user/login", userInfo);
 
             console.log(res.data);
 
             alert("signed in sucessfully");
             navigate("/Home");
+            onClose();
+
         } catch (err) {
             console.log(err);
             if (err.response?.status === 400 ){
@@ -114,7 +120,9 @@ const LogIn = ({ onClose }) => {
 
         <p className='font-light text-sm mt-4'>
             Not on Radar yet? 
-            <Link to="/Login" className='font-semibold text-blue-600 ml-1'>Sign up</Link>
+            <Link 
+            onClick={handleSignUp}
+            className='font-semibold text-blue-600 ml-1'>Sign up</Link>
         </p>
       </div>
     </div>

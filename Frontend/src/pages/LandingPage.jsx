@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const LandingPage = ({ onSignUpClick }) => {
+const LandingPage = ({ onSignUpClick, onLogInClick }) => {
 
-  const navigate = useNavigate();
 
   return (
     <div className="flex flex-1 flex-col min-h-screen bg-[#F8FAFC]">
@@ -36,7 +34,7 @@ const LandingPage = ({ onSignUpClick }) => {
               Unlock The City for free
             </button>
             <button 
-            onClick={() => {navigate('/Login')}}
+            onClick={onLogInClick}
             className="flex font-semibold p-4 rounded-3xl hover:bg-gray-100">
               I already have an account
             </button>

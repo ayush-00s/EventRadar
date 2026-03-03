@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 
-const SignUp = ({ onClose }) => {
+const SignUp = ({ onClose,onLogInClick }) => {
     const [name, setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const handleLogIn = () => {
+        onClose();
+        onLogInClick();
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -115,7 +120,9 @@ const SignUp = ({ onClose }) => {
 
         <p className='font-light text-sm mt-4'>
             Already a member? 
-            <Link to="/Login" className='font-semibold text-blue-600 ml-1'>Log in</Link>
+            <Link
+            onClick={handleLogIn}
+            className='font-semibold text-blue-600 ml-1'>Log in</Link>
         </p>
       </div>
     </div>

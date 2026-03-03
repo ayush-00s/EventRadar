@@ -21,13 +21,21 @@ const App = () => {
       onSignUpClick={() => setShowSignUp(true)} onLogInClick={()=> setShowLogIn(true)}
       />
       <Routes>
-        <Route path="/" element={<LandingPage onSignUpClick={() => setShowSignUp(true)} />}/>
+        <Route path="/" element={<LandingPage onSignUpClick={() => setShowSignUp(true)}
+        onLogInClick={() => setShowLogIn(true)}
+         />}/>
         <Route path="/Home" element={<Home/>}/>
         <Route path="/About" element={<About/>}/>
         <Route path='/Contact' element={<Contact/>}/>
       </Routes>
-      {showSignUp && <SignUp onClose={() => setShowSignUp(false)} />}
-      {showLogIn && <LogIn onClose={() => setShowLogIn(false)}/>}
+      {showSignUp && <SignUp 
+                        onClose={() => setShowSignUp(false)} 
+                        onLogInClick={() => setShowLogIn(true)}
+                      />}
+      {showLogIn && <LogIn 
+                      onClose={() => setShowLogIn(false)}
+                      onSignUpClick={() => setShowSignUp(true)} // this will set signup modal true 
+                    />}
     </div>
   )
 }
